@@ -30,6 +30,7 @@ export default async function handler(req, res) {
     // Check if resource exists in Cloudinary
     const result = await cloudinary.api.resource(`nptel-certificates/${id}`, {
       resource_type: 'image',
+      context: true,
     });
 
     return res.status(200).json({
@@ -39,6 +40,7 @@ export default async function handler(req, res) {
         imageUrl: result.secure_url,
         format: result.format,
         originalName: result.original_filename,
+        certificateNumber: result.context?.custom?.certificateNumber || '',
       },
     });
   } catch (error) {
@@ -46,6 +48,7 @@ export default async function handler(req, res) {
     try {
       const result = await cloudinary.api.resource(`nptel-certificates/${id}`, {
         resource_type: 'raw',
+        context: true,
       });
 
       return res.status(200).json({
@@ -55,6 +58,7 @@ export default async function handler(req, res) {
           imageUrl: result.secure_url,
           format: 'pdf',
           originalName: result.original_filename,
+          certificateNumber: result.context?.custom?.certificateNumber || '',
         },
       });
     } catch {

@@ -39,9 +39,14 @@ export default async function handler(req, res) {
 
     const [fields, files] = await form.parse(req);
     const file = files.certificate?.[0];
+    const certificateNumber = fields.certificateNumber?.[0]?.trim() || '';
 
     if (!file) {
       return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    if (!certificateNumber) {
+      return res.status(400).json({ error: 'Certificate number is required' });
     }
 
     // Generate short certificate ID
@@ -54,6 +59,7 @@ export default async function handler(req, res) {
       resource_type: 'auto',
       quality: 'auto:best',
       fetch_format: 'auto',
+      context: { certificateNumber }
     });
 
     // Build public URL
@@ -68,7 +74,7 @@ export default async function handler(req, res) {
     });
 
     // Clean up temp file
-    try { fs.unlinkSync(file.filepath); } catch {}
+    try { fs.unlinkSync(file.filepath); } catch { }
 
     return res.status(200).json({
       success: true,

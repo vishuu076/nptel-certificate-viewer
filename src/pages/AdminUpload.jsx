@@ -3,8 +3,6 @@ import axios from 'axios';
 import QRCodeDisplay from '../components/QRCodeDisplay';
 import './AdminUpload.css';
 
-
-
 function AdminUpload() {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -12,6 +10,7 @@ function AdminUpload() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [dragActive, setDragActive] = useState(false);
+  const [certificateNumber, setCertificateNumber] = useState('');
   const inputRef = useRef(null);
 
   const handleFileChange = (selectedFile) => {
@@ -53,12 +52,17 @@ function AdminUpload() {
 
   const handleUpload = async () => {
     if (!file) return;
+    if (!certificateNumber.trim()) {
+      setError('Please enter a certificate number');
+      return;
+    }
     setUploading(true);
     setError(null);
 
     try {
       const formData = new FormData();
       formData.append('certificate', file);
+      formData.append('certificateNumber', certificateNumber.trim());
 
       const res = await axios.post('/api/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
@@ -68,6 +72,7 @@ function AdminUpload() {
         setResult(res.data.certificate);
         setFile(null);
         setPreview(null);
+        setCertificateNumber('');
       }
     } catch (err) {
       setError(err.response?.data?.error || 'Upload failed');
@@ -81,6 +86,7 @@ function AdminUpload() {
     setPreview(null);
     setResult(null);
     setError(null);
+    setCertificateNumber('');
   };
 
   return (
@@ -132,6 +138,25 @@ function AdminUpload() {
                 </div>
               )}
             </div>
+
+            {/* Custom Certificate Number Input Field */}
+            {file && (
+              <div className="admin-input-group">
+                <label htmlFor="certificateNumber" className="admin-input-label">
+                  Enter Certificate Number
+                </label>
+                <input
+                  id="certificateNumber"
+                  type="text"
+                  className="admin-text-input"
+                  placeholder="e.g. CERT-101, VISHU-001, AI-2025-77"
+                  value={certificateNumber}
+                  onChange={(e) => setCertificateNumber(e.target.value)}
+                  autoComplete="off"
+                  required
+                />
+              </div>
+            )}
 
             {/* Error */}
             {error && <div className="admin-error">{error}</div>}

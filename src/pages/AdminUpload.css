@@ -1,0 +1,220 @@
+/* ===== ADMIN UPLOAD PAGE ===== */
+
+.admin-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #0a0a0a;
+}
+
+.admin-card {
+  width: 100%;
+  max-width: 480px;
+  background: #141414;
+  border: 1px solid #1e1e1e;
+  border-radius: 16px;
+  padding: 36px 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Header --- */
+.admin-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.admin-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f0f0f0;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.admin-subtitle {
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 400;
+}
+
+/* --- Dropzone --- */
+.dropzone {
+  border: 2px dashed #2a2a2a;
+  border-radius: 12px;
+  padding: 40px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: #0d0d0d;
+  position: relative;
+  overflow: hidden;
+}
+
+.dropzone:hover,
+.dropzone.drag-active {
+  border-color: #444;
+  background: #111;
+}
+
+.dropzone.drag-active {
+  border-color: #666;
+  background: #151515;
+}
+
+.dropzone.has-file {
+  border-style: solid;
+  border-color: #2a2a2a;
+  padding: 20px;
+}
+
+/* Dropzone content */
+.dropzone-icon {
+  color: #444;
+  margin-bottom: 16px;
+  transition: color 0.25s ease;
+}
+
+.dropzone:hover .dropzone-icon {
+  color: #666;
+}
+
+.dropzone-text {
+  font-size: 0.92rem;
+  color: #888;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.dropzone-hint {
+  font-size: 0.75rem;
+  color: #555;
+}
+
+/* Preview */
+.dropzone-preview {
+  display: flex;
+  justify-content: center;
+}
+
+.preview-img {
+  max-width: 100%;
+  max-height: 220px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+/* File info (PDF) */
+.dropzone-file-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.file-icon {
+  font-size: 1.6rem;
+}
+
+.file-name {
+  font-size: 0.88rem;
+  color: #aaa;
+  word-break: break-all;
+}
+
+/* --- Error --- */
+.admin-error {
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  border-radius: 8px;
+  color: #ef4444;
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+/* --- Upload Button --- */
+.upload-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px 24px;
+  background: #f0f0f0;
+  color: #0a0a0a;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.upload-btn:hover:not(:disabled) {
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+.upload-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.upload-btn.uploading {
+  background: #333;
+  color: #ccc;
+}
+
+.btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #ccc;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* --- Result --- */
+.upload-result {
+  text-align: center;
+}
+
+.reset-btn {
+  margin-top: 20px;
+  padding: 12px 28px;
+  background: transparent;
+  color: #888;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.reset-btn:hover {
+  border-color: #444;
+  color: #ccc;
+  background: #1a1a1a;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 520px) {
+  .admin-container {
+    padding: 16px;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+
+  .admin-card {
+    padding: 28px 20px;
+    border-radius: 14px;
+  }
+
+  .dropzone {
+    padding: 32px 16px;
+  }
+}

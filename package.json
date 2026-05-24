@@ -1,0 +1,29 @@
+{
+  "name": "nptel-certificate-viewer",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "NPTEL Style Certificate Viewer with QR Code support",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "cloudinary": "^2.5.1",
+    "formidable": "^3.5.2",
+    "qrcode": "^1.5.4",
+    "qrcode.react": "^4.2.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.1",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "vite": "^6.3.5"
+  }
+}

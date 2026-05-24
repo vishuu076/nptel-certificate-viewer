@@ -62,8 +62,8 @@ function CertificateViewer() {
 
   const isPdf = certificate.format === 'pdf';
   const fileName = certificate.certificateNumber
-    ? (isPdf ? `${certificate.certificateNumber}.Pdf` : certificate.certificateNumber)
-    : `Certificate_${id}`;
+    ? `${certificate.certificateNumber}.pdf`
+    : `Certificate_${id}.pdf`;
 
   // ===== LANDING SCREEN (before Open) =====
   if (!opened) {
@@ -72,15 +72,9 @@ function CertificateViewer() {
         <div className="landing-content">
           {/* File type icon — NPTEL Style */}
           <div className="landing-icon">
-            {isPdf ? (
-              <div className="nptel-pdf-box">
-                <span className="nptel-pdf-text">PDF</span>
-              </div>
-            ) : (
-              <div className="nptel-pdf-box nptel-img-box">
-                <span className="nptel-pdf-text">IMG</span>
-              </div>
-            )}
+            <div className="nptel-pdf-box">
+              <span className="nptel-pdf-text">PDF</span>
+            </div>
           </div>
 
           {/* File name */}

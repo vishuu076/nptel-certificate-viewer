@@ -49,8 +49,8 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Certificate number is required' });
     }
 
-    // Generate short certificate ID
-    const certId = uuidv4().split('-')[0];
+    // Generate certificate ID using sanitized custom certificate number
+    const certId = certificateNumber.replace(/[^a-zA-Z0-9-_]/g, '_');
 
     // Upload to Cloudinary
     const cloudResult = await cloudinary.uploader.upload(file.filepath, {
@@ -62,9 +62,9 @@ export default async function handler(req, res) {
       context: { certificateNumber }
     });
 
-    // Build public URL
+    // Build public URL matching NPTEL structure
     const baseUrl = process.env.BASE_URL || `https://${req.headers.host}`;
-    const publicUrl = `${baseUrl}/certificates/${certId}`;
+    const publicUrl = `${baseUrl}/noc/E_Certificate/${certId}`;
 
     // Generate QR code
     const qrDataUrl = await QRCode.toDataURL(publicUrl, {

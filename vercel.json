@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/noc/E_Certificate/:id",
+      "destination": "/index.html"
+    },
+    {
       "source": "/certificates/:id",
       "destination": "/index.html"
     }

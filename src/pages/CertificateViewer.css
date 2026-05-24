@@ -24,8 +24,37 @@
 }
 
 .landing-icon {
-  opacity: 0.7;
   margin-bottom: 4px;
+}
+
+/* NPTEL Style PDF Box Icon */
+.nptel-pdf-box {
+  width: 78px;
+  height: 78px;
+  background: #141414; /* Dark grey box matching NPTEL */
+  border: 1.5px solid #1a1a1a;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.nptel-pdf-text {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #333333; /* Very dark grey text blending into the box */
+  user-select: none;
+}
+
+.nptel-img-box {
+  border-color: #1c2630;
+}
+
+.nptel-img-box .nptel-pdf-text {
+  color: #243545;
 }
 
 .landing-filename {
